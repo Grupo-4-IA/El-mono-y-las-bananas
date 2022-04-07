@@ -1,3 +1,9 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.HashSet;
+
 public class Program {
     static final int[][] states={
             { 1, 1, 0, 0, 0, 0 }, //0  | 0 0 0 |
@@ -40,12 +46,12 @@ public class Program {
             return;
         }
 
-        Queue<Node> open = new Queue<Node>();
-        open.enqueue(start);
+        Queue<Node> open = new LinkedList<Node>();
+        open.add(start);
         HashSet<Node> closed = new HashSet<Node>();
 
         while (!open.isEmpty()){
-            Node x = open.dequeue();
+            Node x = open.remove();
             List<Node> successorsOfX = GetChildrenOf(x);
             closed.add(x);
 
@@ -56,7 +62,7 @@ public class Program {
                     System.out.println();
                     return;
                 }else if(!closed.contains(successor) && !open.equals(successor)){
-                    open.enqueue(successor);
+                    open.add(successor);
                 }
             }
         }
